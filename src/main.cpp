@@ -2,6 +2,7 @@
 #include <string>
 
 void handleEcho(std::string &input);
+void handleType(std::string arg);
 
 int main()
 {
@@ -25,6 +26,11 @@ int main()
       // Output the part after "echo "
       handleEcho(input);
     }
+    else if ((input.rfind("type", 0) == 0) && input.length() > 4) // if input starts with "echo "
+    {
+      // Output the part after "echo "
+      handleType(input.substr(5));
+    }
     else
     {
       std::cout << input << ": command not found" << std::endl;
@@ -40,4 +46,13 @@ void handleEcho(std::string &input)
     return;
   }
   std::cout << input.substr(5) << std::endl;
+}
+
+void handleType(std::string arg)
+{
+  if (arg == "type")
+  {
+    std::cout << arg << " is a shell builtin" << std::endl;
+    return;
+  }
 }
