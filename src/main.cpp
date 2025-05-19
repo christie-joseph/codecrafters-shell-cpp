@@ -77,6 +77,6 @@ void handleType(std::string arg)
   }
   else
   {
-    std::cout << arg << ": command not found" << std::endl;
+    return;
   }
 }
