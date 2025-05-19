@@ -55,4 +55,28 @@ void handleType(std::string arg)
     std::cout << arg << " is a shell builtin" << std::endl;
     return;
   }
+  else if (arg == "echo")
+  {
+    std::cout << arg << " is a shell builtin" << std::endl;
+    return;
+  }
+  else if (arg == "exit")
+  {
+    std::cout << arg << " is a shell builtin" << std::endl;
+    return;
+  }
+  else if (arg == "cd")
+  {
+    std::cout << arg << " is a shell builtin" << std::endl;
+    return;
+  }
+  else if (arg == "pwd")
+  {
+    std::cout << arg << " is a shell builtin" << std::endl;
+    return;
+  }
+  else
+  {
+    std::cout << arg << ": command not found" << std::endl;
+  }
 }
