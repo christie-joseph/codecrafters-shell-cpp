@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include "command_utils.h"
 
 int main()
@@ -14,22 +15,35 @@ int main()
 
     std::string input;
     std::getline(std::cin, input);
-    
-    if (input == "exit 0")
+
+    CommandType cmdType = parseCommandType(input);
+
+    switch (cmdType)
     {
-      return 0; // Exit the program from main
-    }
-    else if (isEchoCommand(input))
-    {
+    case CommandType::EXIT:
+      return 0;
+    case CommandType::ECHO:
       handleEcho(input);
-    }
-    else if (isTypeCommand(input))
+      break;
+    case CommandType::TYPE:
     {
-      handleType(input.substr(5));
+      std::vector<std::string> args = parseArguments(input);
+      if (args.size() > 1)
+      {
+        handleType(args[1]);
+      }
     }
-    else
+    break;
+    case CommandType::UNKNOWN:
+    default:
     {
-      std::cout << input << ": command not found" << std::endl;
+      std::string cmdName = getCommandName(input);
+      if (!cmdName.empty())
+      {
+        std::cout << cmdName << ": command not found" << std::endl;
+      }
+    }
+    break;
     }
   }
 }
